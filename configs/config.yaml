@@ -2,7 +2,7 @@
 
 # General startup parameters
 model_name: "HDAAGT"
-description: "No fisheye parameters + Temperature + 4s length"
+description: "No fisheye parameters + Multi-modal"
 verbal: false # If true, it will print the configs parameters
 detection_path: 'data/Fisheye-MARC.csv'
 Zoneconf_path: 'configs/ZoneConf.yaml'
@@ -53,10 +53,16 @@ noise_ratio: 0.5 # probability of the noise
 
 # Training parameters
 learning_rate: !!float 8e-04
-schd_stepzise: 12
-gamma: 0.2
-epochs: 45
+schd_stepzise: 15
+gamma: 0.25
+epochs: 40
 patience_limit: 5
 clip: 0.25
-batch_size: 128
-device: 'cuda:3'
+batch_size: 256
+device: 'cuda:0'
+
+Adjacency:
+  mode: "behavioral_topk"   # ["baseline","behavioral_topk"]
+  use_phase_gate: true
+  use_zone_gate: true
+  use_bearing_cone: true
